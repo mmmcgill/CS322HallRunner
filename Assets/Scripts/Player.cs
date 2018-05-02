@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _camera;
     public Vector3 direction = Vector3.forward;
-    public int lives;
+    public const int lives = 3;
+    public int currentLives = lives;
 
     private float _progress = 0;
     private Vector3 _lastPosition;
@@ -36,9 +37,9 @@ public class Player : MonoBehaviour
             { // press C to crouch
                 transform.localScale = new Vector3(1, 0.5f, 1);
             }
-           // else if (_camera.transform.position.y < _height)
+            // else if (_camera.transform.position.y < _height)
             //{ // or use player height
-              //  transform.localScale = new Vector3(1, _camera.transform.position.y / _height, 1);
+            //  transform.localScale = new Vector3(1, _camera.transform.position.y / _height, 1);
             //}
             else
             {
@@ -86,17 +87,17 @@ public class Player : MonoBehaviour
     {
         return speed;
     }
-
+ 
     public float GetProgress()
     {
         return _progress;
     }
-
+ 
     public void AddProgress(float val)
     {
         _progress += val;
     }
-
+ 
     public void SetProgress(float val)
     {
         _progress = val;
@@ -107,15 +108,8 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Obstacle" || other.tag == "Enemy")
         {
-            lives--;
-            if (lives < 1)
-            {
-                //GetComponent<Rigidbody>().velocity = direction * speed;
-                GetComponent<Rigidbody>().freezeRotation = false;
-                _collision = true;
-                Debug.Log("Player collided");
-                _levelManager.GetComponent<LevelManager>().FailLevel();
-            }
+            Damage(currentLives);
+            //GetComponent<Rigidbody>().velocity = direction * speed;
         }
     }
 }
