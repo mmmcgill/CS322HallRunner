@@ -103,30 +103,30 @@ public class Player : MonoBehaviour
         _progress = val;
     }
  
-    private void AutoMove()
-    {
-        direction = _camera.transform.forward;
-        direction.y = 0;
-        Vector3 startPos = transform.position;
-        Vector3 translate = direction * speed * Time.deltaTime;
-        //transform.Translate(translate);
+    //private void AutoMove()
+    //{
+        //direction = _camera.transform.forward;
+        //direction.y = 0;
+        //Vector3 startPos = transform.position;
+        //Vector3 translate = direction * speed * Time.deltaTime;
+        ////transform.Translate(translate);
 
-        //update position of everything under root parent, so motion tracking doesn't move
-        //anything away from parents
-        Transform[] allInTree = transform.root.GetComponentsInChildren<Transform>();
-        Vector3[] positions = new Vector3[allInTree.Length];
-        for (int i = 0; i < allInTree.Length; i++)
-        {
-            positions[i] = allInTree[i].position;
-        }
-        for (int i = 0; i < allInTree.Length; i++)
-        {
-            allInTree[i].position = positions[i] + translate;
-        }
-        Vector3 endPos = transform.position;
-        _progress += Vector3.Distance(endPos, startPos);
+        ////update position of everything under root parent, so motion tracking doesn't move
+        ////anything away from parents
+        //Transform[] allInTree = transform.root.GetComponentsInChildren<Transform>();
+        //Vector3[] positions = new Vector3[allInTree.Length];
+        //for (int i = 0; i < allInTree.Length; i++)
+        //{
+        //    positions[i] = allInTree[i].position;
+        //}
+        //for (int i = 0; i < allInTree.Length; i++)
+        //{
+        //    allInTree[i].position = positions[i] + translate;
+        //}
+        //Vector3 endPos = transform.position;
+        //_progress += Vector3.Distance(endPos, startPos);
 
-    }
+    //}
 
     private void Damage(int amount)
     {

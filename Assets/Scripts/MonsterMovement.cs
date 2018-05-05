@@ -5,7 +5,7 @@ public class MonsterMovement : MonoBehaviour
 {
     [SerializeField]
     private GameObject _monster;
-    public static int moveSpeed = 3;
+    public static float moveSpeed = 0.8f;
     public Vector3 aiDirection = Vector3.forward;
 
 	// Update is called once per frame
@@ -13,7 +13,7 @@ public class MonsterMovement : MonoBehaviour
 	{
         transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
         _monster.SetActive(true);
-        Invoke("Disappear", 10);
+        Invoke("Disappear", 20);
 
 	}
 
